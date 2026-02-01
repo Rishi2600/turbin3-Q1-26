@@ -10,3 +10,5 @@
 - Stored the subsequent mint address.
 - Used that mint address to create an ATA for that mint account using the `getOrCreateAssociatedTokenAccount` function.
 - used the `mintTo` function to establish a mint to that ATA we created earlier.
+- created a receiver ATA where I can send the token form my senders ATA.
+- sent the token from my sender ATA to my receiver ATA using the `transfer` function from the `@solana/spl-token` library.
