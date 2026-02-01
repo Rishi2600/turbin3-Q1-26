@@ -1,5 +1,5 @@
 import { Keypair, PublicKey, Connection, Commitment } from "@solana/web3.js";
-import { getOrCreateAssociatedTokenAccount, mintTo } from '@solana/spl-token';
+import { getOrCreateAssociatedTokenAccount, mintTo, transfer} from '@solana/spl-token';
 import wallet from "/home/rishi/.config/solana/dev1.json"
 
 // Import our keypair from the wallet file
@@ -34,6 +34,19 @@ const mint = new PublicKey("85yFXxwMQDBAfKSBGkTrREWebCLKvdK1eQmoAWmUJmuW");
             100
         )
         console.log(`Your mint txid: ${mintTx}`);
+
+        const receiverata = new PublicKey("14RCVnsTtzKtmtsw8pmjFWTTkBAdWgCdEVJAw28bHGAQ")
+
+        const trasnferSig = await transfer(
+            connection,
+            keypair,
+            ata.address,
+            receiverata,
+            keypair.publicKey,
+            50
+        )
+
+        console.log(`transfer signature ${trasnferSig}`)
     } catch(error) {
         console.log(`Oops, something went wrong: ${error}`)
     }
