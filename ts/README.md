@@ -14,5 +14,4 @@
 - sent the token from my sender ATA to my receiver ATA using the `transfer` function from the `@solana/spl-token` library.
 
 ### Todo after this - 
-- Currently sending the token from the `spl_mint` file itself (because currently I am using manually generated ATA), but I will migrate to the `spl_migrate` file to do the transfer.
 - I will add the metadata to the mint account using **metaplex**
