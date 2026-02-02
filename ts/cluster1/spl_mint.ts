@@ -34,19 +34,6 @@ const mint = new PublicKey("85yFXxwMQDBAfKSBGkTrREWebCLKvdK1eQmoAWmUJmuW");
             100
         )
         console.log(`Your mint txid: ${mintTx}`);
-
-        const receiverata = new PublicKey("14RCVnsTtzKtmtsw8pmjFWTTkBAdWgCdEVJAw28bHGAQ")
-
-        const trasnferSig = await transfer(
-            connection,
-            keypair,
-            ata.address,
-            receiverata,
-            keypair.publicKey,
-            50
-        )
-
-        console.log(`transfer signature ${trasnferSig}`)
     } catch(error) {
         console.log(`Oops, something went wrong: ${error}`)
     }
