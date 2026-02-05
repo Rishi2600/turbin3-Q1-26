@@ -31,7 +31,7 @@ umi.use(signerIdentity(createSignerFromKeypair(umi, keypair)));
             updateAuthority: keypair.publicKey
         }
 
-        console.log(accounts);
+        console.log(`the metadata account: ${accounts}`);
 
         // let data: DataV2Args = {
         //     ???
@@ -45,11 +45,17 @@ umi.use(signerIdentity(createSignerFromKeypair(umi, keypair)));
             collection: null,
             uses: null
         }
-        console.log(data)
+        console.log(`the on-chain metadata: ${data}`)
 
         // let args: CreateMetadataAccountV3InstructionArgs = {
         //     ???
         // }
+        let args: CreateMetadataAccountV3InstructionArgs = {
+            data: data,
+            isMutable: false,
+            collectionDetails: null
+        }
+        console.log(`the metadata account arguments: ${args}`)
 
         // let tx = createMetadataAccountV3(
         //     umi,
