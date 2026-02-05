@@ -12,6 +12,5 @@
 - used the `mintTo` function to establish a mint to that ATA we created earlier.
 - created a receiver ATA where I can send the token form my senders ATA.
 - sent the token from my sender ATA to my receiver ATA using the `transfer` function from the `@solana/spl-token` library.
-
-### Todo after this - 
-- I will add the metadata to the mint account using **metaplex**
+- used the `spl_transfer` file to perform all the transfer logic.
+- Added metadata to the mint account using `metaplex metadata program`
