@@ -8,6 +8,7 @@ import {
 } from "@metaplex-foundation/mpl-token-metadata";
 import { createSignerFromKeypair, signerIdentity, publicKey } from "@metaplex-foundation/umi";
 import { bs58 } from "@coral-xyz/anchor/dist/cjs/utils/bytes";
+import ts from "typescript";
 
 // Define our Mint address
 const mint = publicKey("85yFXxwMQDBAfKSBGkTrREWebCLKvdK1eQmoAWmUJmuW")
@@ -31,7 +32,7 @@ umi.use(signerIdentity(createSignerFromKeypair(umi, keypair)));
             updateAuthority: keypair.publicKey
         }
 
-        console.log(`the metadata account: ${accounts}`);
+        console.log(`the metadata account: ${accounts.payer}`);
 
         // let data: DataV2Args = {
         //     ???
@@ -45,7 +46,7 @@ umi.use(signerIdentity(createSignerFromKeypair(umi, keypair)));
             collection: null,
             uses: null
         }
-        console.log(`the on-chain metadata: ${data}`)
+        console.log(`the on-chain metadata: ${data.name}`)
 
         // let args: CreateMetadataAccountV3InstructionArgs = {
         //     ???
@@ -55,7 +56,7 @@ umi.use(signerIdentity(createSignerFromKeypair(umi, keypair)));
             isMutable: false,
             collectionDetails: null
         }
-        console.log(`the metadata account arguments: ${args}`)
+        console.log(`the metadata account arguments: ${args.data}`)
 
         // let tx = createMetadataAccountV3(
         //     umi,
@@ -64,9 +65,31 @@ umi.use(signerIdentity(createSignerFromKeypair(umi, keypair)));
         //         ...args
         //     }
         // )
+        let tx = createMetadataAccountV3(
+            umi, 
+                {
+                mint: mint,
+                mintAuthority: signer,
+                payer: signer,
+                updateAuthority: keypair.publicKey,
+                data: {
+                    name: "BananaMan",
+                    symbol: "BM$",
+                    uri: "https://gist.githubusercontent.com/Rishi2600/31569fa3bc5cda9dc0a00dbf142185ee/raw/ca15161a6aff623f44c308f0222887ae61ef540b/gistfile1.txt",
+                    sellerFeeBasisPoints: 10,
+                    creators: null,
+                    collection: null,
+                    uses: null
+                },
+                isMutable: false,
+                collectionDetails: null
+            }
+        )
+        console.log(`metadata account pubkey: ${ts}`)
 
-        // let result = await tx.sendAndConfirm(umi);
-        // console.log(bs58.encode(result.signature));
+        let result = await tx.sendAndConfirm(umi)
+
+        console.log(bs58.encode(result.signature));
     } catch(e) {
         console.error(`Oops, something went wrong: ${e}`)
     }
