@@ -1,4 +1,4 @@
-import wallet from "../turbin3-wallet.json"
+import wallet from "/home/rishi/.config/solana/dev1.json"
 import { createUmi } from "@metaplex-foundation/umi-bundle-defaults"
 import { 
     createMetadataAccountV3, 
@@ -10,7 +10,7 @@ import { createSignerFromKeypair, signerIdentity, publicKey } from "@metaplex-fo
 import { bs58 } from "@coral-xyz/anchor/dist/cjs/utils/bytes";
 
 // Define our Mint address
-const mint = publicKey("<mint address>")
+const mint = publicKey("85yFXxwMQDBAfKSBGkTrREWebCLKvdK1eQmoAWmUJmuW")
 
 // Create a UMI connection
 const umi = createUmi('https://api.devnet.solana.com');
@@ -24,10 +24,28 @@ umi.use(signerIdentity(createSignerFromKeypair(umi, keypair)));
         // let accounts: CreateMetadataAccountV3InstructionAccounts = {
         //     ???
         // }
+        let accounts: CreateMetadataAccountV3InstructionAccounts = {
+            mint: mint,
+            mintAuthority: signer,
+            payer: signer,
+            updateAuthority: keypair.publicKey
+        }
+
+        console.log(accounts);
 
         // let data: DataV2Args = {
         //     ???
         // }
+        let data: DataV2Args = {
+            name: "BananaMan",
+            symbol: "BM$",
+            uri: "https://gist.githubusercontent.com/Rishi2600/31569fa3bc5cda9dc0a00dbf142185ee/raw/ca15161a6aff623f44c308f0222887ae61ef540b/gistfile1.txt",
+            sellerFeeBasisPoints: 10,
+            creators: null,
+            collection: null,
+            uses: null
+        }
+        console.log(data)
 
         // let args: CreateMetadataAccountV3InstructionArgs = {
         //     ???
