@@ -8,7 +8,6 @@ import {
 } from "@metaplex-foundation/mpl-token-metadata";
 import { createSignerFromKeypair, signerIdentity, publicKey } from "@metaplex-foundation/umi";
 import { bs58 } from "@coral-xyz/anchor/dist/cjs/utils/bytes";
-import ts from "typescript";
 
 // Define our Mint address
 const mint = publicKey("85yFXxwMQDBAfKSBGkTrREWebCLKvdK1eQmoAWmUJmuW")
@@ -67,7 +66,7 @@ umi.use(signerIdentity(createSignerFromKeypair(umi, keypair)));
         // )
         let tx = createMetadataAccountV3(
             umi, 
-                {
+            {
                 mint: mint,
                 mintAuthority: signer,
                 payer: signer,
@@ -85,7 +84,9 @@ umi.use(signerIdentity(createSignerFromKeypair(umi, keypair)));
                 collectionDetails: null
             }
         )
-        console.log(`metadata account pubkey: ${ts}`)
+        console.log(`metadata account pubkey: ${tx}`)
+        //get the pubkey of this metadata account using some other method.
+        //findMetadataPda
 
         let result = await tx.sendAndConfirm(umi)
 
