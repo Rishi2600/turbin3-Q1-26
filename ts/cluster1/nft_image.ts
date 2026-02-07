@@ -15,14 +15,17 @@ umi.use(signerIdentity(signer));
 
 (async () => {
     try {
-        //1. Load image
-        //2. Convert image to generic file.
-        //3. Upload image
+        let image = await readFile('/mnt/g/nft.jpg')
 
-        // const image = ???
+        let genericImage = createGenericFile(image, 'BananaManNFT')
+        // console.log(genericImage)
 
-        // const [myUri] = ??? 
-        // console.log("Your image URI: ", myUri);
+        let uploadImage = await umi.uploader.upload([genericImage])
+        // console.log(uploadImage)
+
+        const [myUri] = ['https://gateway.irys.xyz/8E1oV9MKEtX8zoSSFdPw5SkJQSdN8A3mrsyP6KDqBx66']
+
+        console.log("Your image URI: ", myUri);
     }
     catch(error) {
         console.log("Oops.. Something went wrong", error);
