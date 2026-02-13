@@ -42,36 +42,36 @@ umi.use(signerIdentity(signer));
         const metadataUri = await umi.uploader.uploadJson(metadataJSON)
         console.log(`metadata uri: ${metadataUri}`)
 
-        const metadata = createMetadataAccountV3(
-            umi,
-            {
-                mint: mint,
-                mintAuthority: signer,
-                payer: signer,
-                updateAuthority: signer,
-                data: {
-                    name: "BananaMan",
-                    symbol: "BM$",
-                    uri: " https://gateway.irys.xyz/EbsxdG3ExzfKzwtuKm4B9WPVSgNtMg59cZdRt8J9c1x1",
-                    sellerFeeBasisPoints: 0,
-                    creators: null,
-                    collection: null,
-                    uses: null
-                },
-                isMutable: false,
-                collectionDetails: null
+        // const metadata = createMetadataAccountV3(
+        //     umi,
+        //     {
+        //         mint: mint,
+        //         mintAuthority: signer,
+        //         payer: signer,
+        //         updateAuthority: signer,
+        //         data: {
+        //             name: "BananaMan",
+        //             symbol: "BM$",
+        //             uri: " https://gateway.irys.xyz/EbsxdG3ExzfKzwtuKm4B9WPVSgNtMg59cZdRt8J9c1x1",
+        //             sellerFeeBasisPoints: 0,
+        //             creators: null,
+        //             collection: null,
+        //             uses: null
+        //         },
+        //         isMutable: false,
+        //         collectionDetails: null
 
-            }
-        )
+        //     }
+        // )
 
-        let result = await metadata.sendAndConfirm(umi)
+        // let result = await metadata.sendAndConfirm(umi)
 
-        console.log(base58.encode(result.signature));
+        // console.log(base58.encode(result.signature));
 
         // to get the metadata details
-        //const metadata = await fetchMetadataFromSeeds(umi, { mint: mint });
+        const metadata = await fetchMetadataFromSeeds(umi, { mint: mint });
 
-        //console.log(metadata);
+        console.log(metadata);
     }
     catch(error) {
         console.log("Oops.. Something went wrong", error);

@@ -9,3 +9,5 @@
 5. Name of my **NFT** - **BananaMan**
 
 Note - I used the `metaplex-foundation/umi` to do most of these tasks
+
+- My NFT mint - **FLz8FhZFGgzhFZDLTKFiH1bLWtWfD2tu2eVNUSruthoe**
